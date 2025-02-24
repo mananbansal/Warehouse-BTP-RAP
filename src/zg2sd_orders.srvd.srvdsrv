@@ -1,0 +1,5 @@
+@EndUserText.label: 'orders sd'
+define service ZG2SD_ORDERS {
+  expose ZG2C_ORDERS;
+  expose ZG2C_ORDERS_DTL;
+}

@@ -1,0 +1,5 @@
+@EndUserText.label: 'company warehouse'
+define service ZG2SD_COMP_WH {
+  expose ZG2C_COMP_WH;
+  expose ZG2C_COMP_WH_ITEM;
+}

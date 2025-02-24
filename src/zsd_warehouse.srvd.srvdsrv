@@ -1,0 +1,5 @@
+@EndUserText.label: 'warehouse sd'
+define service ZSD_WAREHOUSE {
+  expose ZG2C_WAREHOUSE;
+  expose ZG2C_WAREHOUSE_ITEM;
+}

@@ -1,0 +1,101 @@
+@Metadata.layer: #CORE
+annotate view ZG2C_ORDERS_DTL
+    with 
+{
+    @UI.facet: [{ 
+    id : 'Orddtl',
+    type : #IDENTIFICATION_REFERENCE,
+    label : 'Order Detail Info',
+    position : 10
+ }]
+    @UI.identification: [{ position: 10 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 10 , importance: #HIGH},{type: #FOR_ACTION, dataAction: 'removeTax', label: 'remove Tax'},
+                                                              {type: #FOR_ACTION, dataAction: 'checkAvailable', label: 'check Availability'}  ]}
+    @UI:{selectionField: [{ position : 10}]}
+    
+    @EndUserText.label : 'Order Id'
+    OrderId;
+ 
+    @UI.identification: [{ position: 20 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 20 , importance: #HIGH }]}
+    @EndUserText.label : 'Item Code'
+    ItemCode;
+    
+    @UI.identification: [{ position: 30 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 30 , importance: #HIGH }]}
+    @UI:{selectionField: [{ position : 30 }]}
+    @EndUserText.label : 'Item Name'
+    ItemName;
+    
+    @UI.identification: [{ position: 40 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 40 , importance: #HIGH }]}
+    @EndUserText.label : 'Item Type'
+    ItemType;
+    
+    @UI.identification: [{ position: 50 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 50 , importance: #HIGH }]}
+    @EndUserText.label : 'Item Category'
+    ItemCategory;  
+    
+    @UI.identification: [{ position: 60 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 60 , importance: #HIGH }]}
+    @EndUserText.label : 'Item Brand'
+    ItemBrand;  
+        
+    @UI.identification: [{ position: 70 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 70 , importance: #HIGH }]}
+    @EndUserText.label : 'Item Model'
+    ItemModel;
+    
+    @UI.identification: [{ position: 80 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 80 , importance: #HIGH }]}
+    @EndUserText.label : 'Item Description'
+    ItemDescription;
+    
+    @UI.identification: [{ position: 90 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 90 , importance: #HIGH }]}
+    @EndUserText.label : 'Unit'
+    Unit;
+    
+    @UI.identification: [{ position: 100 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 100 , importance: #HIGH }]}
+    @EndUserText.label : 'Quantity'
+    Quantity;
+    
+    @UI.identification: [{ position: 110 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 110 , importance: #HIGH }]}
+    @EndUserText.label : 'Currency'
+    Currency;
+    
+    @UI.identification: [{ position: 120 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 120 , importance: #HIGH }]}
+    @EndUserText.label : 'Unit Rate'
+    UnitRate;
+    
+    @UI.identification: [{ position: 130 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 130 , importance: #HIGH }]}
+    @EndUserText.label : 'Sale Code'
+    SaleCode;
+    
+    @UI.identification: [{ position: 140 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 140 , importance: #HIGH }]}
+    @EndUserText.label : 'Tax Code'
+    TaxCode;
+    
+    @UI.identification: [{ position: 141 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 141 , importance: #HIGH }]}
+    @EndUserText.label : 'Amc Status'
+    AmcStatus;
+    
+    @UI.identification: [{ position: 142 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 142 , importance: #HIGH }]}
+    @EndUserText.label : 'Amc Code'
+    AmcCode;
+    
+    @UI.identification: [{ position: 150 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 150 , importance: #HIGH }]}
+    @EndUserText.label : 'Price'
+    Price;
+    
+    
+}

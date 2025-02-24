@@ -1,0 +1,55 @@
+@Metadata.layer: #CORE
+annotate view ZG2C_WH_COMMENTS
+    with 
+{
+    @UI.facet: [{  
+    id : 'Comment',
+    purpose: #STANDARD,
+    type: #IDENTIFICATION_REFERENCE,
+    label: 'Comment Info',
+    position: 10
+}]
+    @UI.identification: [{ position: 10 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 10 , importance: #HIGH }]}
+    @UI:{selectionField: [{ position : 10 }]}
+    @EndUserText.label : 'Company Code'
+    companycode;
+    
+     @UI.identification: [{ position: 20 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 20 , importance: #HIGH }]}
+    @UI:{selectionField: [{ position : 20 }]}
+    @EndUserText.label : 'Item Code'
+    ItemCode;
+    
+     @UI.identification: [{ position: 30 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 30 , importance: #HIGH }]}
+    @UI:{selectionField: [{ position : 30 }]}
+    @EndUserText.label : 'Item Name'
+    ItemName;
+    
+     @UI.identification: [{ position: 40 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 40 , importance: #HIGH }]}
+    @EndUserText.label : 'Warehouse Comment'
+    WarehouseComment;
+    
+     @UI.identification: [{ position: 50 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 50 , importance: #HIGH }]}
+    @EndUserText.label : 'Warehouse Comment Type'
+    WarehouseCommentType;
+    
+     @UI.identification: [{ position: 60 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 60 , importance: #HIGH }]}
+    @EndUserText.label : 'Customer Comment'
+    CustomerComment;
+    
+     @UI.identification: [{ position: 70 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 70 , importance: #HIGH }]}
+    @EndUserText.label : 'Customer Comment Type'
+    CustomerCommentType;
+    
+     @UI.identification: [{ position: 80 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 80 , importance: #HIGH }]}
+    @EndUserText.label : 'Comment Date'
+    CommentCreatedOn;
+    
+}

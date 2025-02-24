@@ -1,0 +1,5 @@
+@EndUserText.label: 'company Sd'
+define service ZSD_COMPANY {
+  expose ZG2C_COMPANY;
+  expose ZG2C_CMP_EMP;
+}

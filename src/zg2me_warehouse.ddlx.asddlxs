@@ -1,0 +1,83 @@
+@Metadata.layer: #CORE
+@UI:{
+    headerInfo :{
+        typeName: 'Header',
+        typeNamePlural: 'Headers',
+        title:{
+            type: #STANDARD,
+            label: 'Header',
+            value: 'WarehouseCode'
+        }
+    }
+}
+@Search.searchable: true
+annotate view ZG2C_WAREHOUSE
+    with 
+{
+    @UI.facet: [{
+    id : 'Header',
+    purpose: #STANDARD,
+    type: #IDENTIFICATION_REFERENCE,
+    label: 'Header Info',
+    position: 10
+},
+{
+    id : 'Item',
+    type : #LINEITEM_REFERENCE,
+    label : 'Items Info',
+    position : 20,
+    targetElement: '_wh_item'
+}]
+    @UI.identification: [{ position: 5 , importance: #HIGH },
+    {type: #FOR_ACTION, dataAction: 'changestatus', label: 'Change Status' }]
+    @UI :{lineItem: [{ position: 5 , importance: #HIGH}]}
+    @UI:{selectionField: [{ position : 5 }]}
+    @EndUserText.label : 'Warehouse Code'
+    @Search.defaultSearchElement: true
+    @Search.fuzzinessThreshold: 0.8
+    WarehouseCode;
+ 
+    @UI.identification: [{ position: 10 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 10 , importance: #HIGH }]}
+    @EndUserText.label : 'Warehouse Type'
+    WarehouseType;
+    
+    @UI.identification: [{ position: 20 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 20 , importance: #HIGH }]}
+    @UI:{selectionField: [{ position : 20 }]}
+    @EndUserText.label : 'Warehouse Name'
+    WarehouseName;
+    
+    @UI.identification: [{ position: 30 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 30 , importance: #HIGH }]}
+    @UI:{selectionField: [{ position : 30 }]}
+    @EndUserText.label : 'Warehouse Location'
+    WarehouseLocation;
+    
+    @UI.identification: [{ position: 40 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 40 , importance: #HIGH }]}
+    @EndUserText.label : 'Warehouse City'
+    WarehouseCity;
+    
+    @UI.identification: [{ position: 50 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 50 , importance: #HIGH }]}
+    @UI:{selectionField: [{ position : 50 }]}
+    @EndUserText.label : 'Warehouse State'
+    WarehouseState;
+    
+    @UI.identification: [{ position: 60 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 60 , importance: #HIGH }]}
+    @EndUserText.label : 'Warehouse Region'
+    WarehouseRegion;
+    
+    @UI.identification: [{ position: 70 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 70 , importance: #HIGH }]}
+    @EndUserText.label : 'Country'
+    Country;
+    
+    @UI.identification: [{ position: 80 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 80 , importance: #HIGH }]}
+    @EndUserText.label : 'Warehouse Status'
+    WarehouseStatus;
+    
+}

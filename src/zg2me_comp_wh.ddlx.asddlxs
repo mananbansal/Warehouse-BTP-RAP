@@ -1,0 +1,99 @@
+@Metadata.layer: #CORE
+@UI:{
+    headerInfo :{
+        typeName: 'Header',
+        typeNamePlural: 'Headers',
+        title:{
+            type: #STANDARD,
+            label: 'Company',
+            value: 'CompanyName'
+        }
+    }
+}
+@Search.searchable: true
+annotate view ZG2C_COMP_WH
+    with 
+{
+    @UI.facet: [{
+    id : 'Company',
+    purpose: #STANDARD,
+    type: #IDENTIFICATION_REFERENCE,
+    label: 'Company Info',
+    position: 10
+},
+{
+    id : 'Employee',
+    type : #LINEITEM_REFERENCE,
+    label : 'Item Info',
+    position : 20,
+    targetElement: '_item'
+}]
+
+@UI.identification: [{ position: 1 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 1 , importance: #HIGH }]}
+    @UI:{selectionField: [{ position : 1}]}
+    @EndUserText.label : 'Warehouse Code'
+    WarehouseCode;
+    
+    @UI.identification: [{ position: 10 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 10 , importance: #HIGH}]}
+    @UI:{selectionField: [{ position : 10}]}
+    @EndUserText.label : 'Company Code'
+    @Search.defaultSearchElement: true
+    CompanyCode;
+ 
+    @UI.identification: [{ position: 20 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 20 , importance: #HIGH }]}
+    @EndUserText.label : 'Org Code'
+    OrgCode;
+    
+    @UI.identification: [{ position: 30 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 30 , importance: #HIGH }]}
+    @UI:{selectionField: [{ position : 30 }]}
+    @EndUserText.label : 'Company Name'
+    CompanyName;
+    
+    @UI.identification: [{ position: 31 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 31 , importance: #HIGH }]}
+    @UI:{selectionField: [{ position : 31 }]}
+    @EndUserText.label : 'Warehouse Location'
+    WarehouseLocation;
+    
+    @UI.identification: [{ position: 32 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 32 , importance: #HIGH }]}
+    @UI:{selectionField: [{ position : 32 }]}
+    @EndUserText.label : 'Warehouse City'
+    WarehouseCity;
+    
+    @UI.identification: [{ position: 33 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 33 , importance: #HIGH }]}
+    @UI:{selectionField: [{ position : 33 }]}
+    @EndUserText.label : 'Warehouse State'
+    WarehouseState;
+    
+    @UI.identification: [{ position: 40 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 40 , importance: #HIGH }]}
+    @EndUserText.label : 'Country'
+    Country;
+    
+    @UI.identification: [{ position: 50 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 50 , importance: #HIGH }]}
+    @EndUserText.label : 'Organization State'
+    OrgState;  
+    
+    @UI.identification: [{ position: 60 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 60 , importance: #HIGH }]}
+    @EndUserText.label : 'Organization City'
+    OrgCity;  
+        
+    @UI.identification: [{ position: 70 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 70 , importance: #HIGH }]}
+    @EndUserText.label : 'Organization Location'
+    OrgLocation;
+    
+    @UI.identification: [{ position: 71 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 71 , importance: #HIGH }]}
+    @EndUserText.label : 'Org Status'
+    OrgStatus;
+    
+}

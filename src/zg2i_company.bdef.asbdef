@@ -1,0 +1,61 @@
+managed implementation in class zbp_g2i_company unique;
+strict ( 2 );
+
+define behavior for ZG2I_COMPANY //alias <alias_name>
+persistent table zg2_company
+lock master
+authorization master ( instance )
+etag master LocalLastChanged
+{
+  create;
+  update;
+  delete;
+  field ( readonly : update ) CompanyCode, OrgCode;
+ field ( mandatory : create ) CompanyCode, OrgCode;
+  mapping for zg2_company
+   {
+    CompanyCode = company_code;
+    OrgCode = org_code;
+    CompanyName = company_name;
+    OrgLocation = org_location;
+    OrgCity = org_city;
+    OrgState = org_state;
+    Country = country;
+    LocalLastChanged = local_last_changed;
+    LastChanged = last_changed;
+    CreatedOn = created_on;
+    CreationUser = creation_user;
+    ChangedUser = changed_user;
+    }
+  association _emp { create; }
+}
+
+define behavior for ZG2I_CMP_EMP //alias <alias_name>
+persistent table zg2_cmp_emp
+lock dependent by _cmp
+authorization dependent by _cmp
+etag master LocalLastChanged
+{
+  update;
+  delete;
+  field ( readonly ) CompanyCode, OrgCode;
+  mapping for zg2_cmp_emp
+  {
+    EmployeeCode = employee_code;
+    CompanyCode = company_code;
+    OrgCode = org_code;
+    EmployeeName = employee_name;
+    EmployeeCity = employee_city;
+    EmployeeDob = employee_dob;
+    EmployeeUsername = employee_username;
+    EmployeeDoj = employee_doj;
+    EmployeeStatus = employee_status;
+    EmployeeDesignation = employee_designation;
+    LocalLastChanged = local_last_changed;
+    LastChanged = last_changed;
+    CreatedOn = created_on;
+    CreationUser = creation_user;
+    ChangedUser = changed_user;
+  }
+  association _cmp;
+}

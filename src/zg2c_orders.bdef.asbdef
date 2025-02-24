@@ -1,0 +1,32 @@
+projection;
+strict ( 2 );
+
+define behavior for ZG2C_ORDERS //alias <alias_name>
+{
+  use create;
+  use update;
+  use delete;
+  use action approveStatus;
+  use action rejectStatus;
+
+  use association _dtl { create; }
+  use association _cmt { create; }
+}
+
+define behavior for ZG2C_ORDERS_DTL //alias <alias_name>
+{
+  use update;
+  use delete;
+  use action removeTax;
+  use action checkAvailable;
+
+  use association _order;
+}
+
+define behavior for zg2c_wh_comments //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _order;
+}

@@ -1,0 +1,126 @@
+managed;
+strict ( 2 );
+
+define behavior for ZG2I_ORDERS
+implementation in class zbp_g2i_orders unique
+persistent table zg2_orders
+lock master
+authorization master ( instance )
+etag master LocalLastChanged
+{
+  create;
+  update;
+  delete;
+  field ( readonly : update ) OrderId;
+  field ( mandatory )  EmployeeId, CompanyCode, OrgCode, WarehouseCode, PaymentMethod;
+  field ( readonly )  Currency, OrderAmount;
+  mapping for zg2_orders
+  {
+OrderId = order_id;
+EmployeeId = employee_id;
+CompanyCode = company_code;
+OrgCode = org_code;
+WarehouseCode = warehouse_code;
+OrderDate = order_date;
+OrderStatus = order_status;
+Currency = currency;
+OrderAmount = order_amount;
+PaymentMethod = payment_method;
+OrderNote = order_note;
+LocalLastChanged = local_last_changed;
+LastChanged = last_changed;
+CreatedOn = created_on;
+CreationUser = creation_user;
+ChangedUser = changed_user;
+
+  }
+
+  validation validateCompCode on save { field CompanyCode;create;update;}
+  validation validateOrgCode on save { field OrgCode;create;update;}
+  validation validateEmpId on save { field EmployeeId;create;update;}
+  validation validateWarehouseCode on save { field WarehouseCode;create;update;}
+  validation validatePayMethod on save { field PaymentMethod;create;update;}
+
+ action(features : instance) approveStatus result [1] $self;
+ action(features : instance) rejectStatus result [1] $self;
+  association _dtl { create; }
+  association _cmt { create; }
+
+
+}
+
+define behavior for ZG2I_ORDERS_DTL
+implementation in class ZBP_G2I_ORDERS_DTL unique
+persistent table zg2_orders_dtl
+lock dependent by _order
+authorization dependent by _order
+etag master LocalLastChanged
+{
+  update;
+  delete;
+  field ( readonly ) OrderId, ItemName, ItemType, ItemCategory, ItemBrand, ItemModel, ItemDescription, Unit,
+                        Currency, UnitRate, SaleCode, TaxCode, Price;
+  field ( readonly : update ) ItemCode;
+  field ( mandatory ) Quantity,AmcStatus,AmcCode;
+  mapping for zg2_orders_dtl
+  {
+  OrderId = order_id;
+ItemCode = item_code;
+ItemName = item_name;
+ItemType = item_type;
+ItemCategory = item_category;
+ItemBrand = item_brand;
+ItemModel = item_model;
+ItemDescription = item_description;
+Unit = unit;
+Quantity = quantity;
+Currency = currency;
+UnitRate = unit_rate;
+SaleCode = sale_code;
+TaxCode = tax_code;
+AmcStatus = amc_status;
+AmcCode = amc_code;
+Price = price;
+LocalLastChanged = local_last_changed;
+LastChanged = last_changed;
+CreatedOn = created_on;
+CreationUser = creation_user;
+ChangedUser = changed_user;
+
+  }
+determination itemDetails on modify {field ItemCode; }
+
+action removeTax result [1] $self;
+action checkAvailable result [1] $self;
+  association _order;
+}
+
+define behavior for ZG2I_WH_COMMENTS //alias <alias_name>
+implementation in class ZBP_G2I_ORDERS_COMNT unique
+persistent table ZG2_WH_COMMENTS
+lock dependent by _order
+authorization dependent by _order
+etag master LocalLastChanged
+{
+  update;
+  delete;
+  field ( readonly ) OrderId, CommentCreatedOn;
+  mapping for ZG2_WH_COMMENTS
+  {
+  OrderId = order_id;
+ItemCode = item_code;
+ItemName = item_name;
+ WarehouseCommentType = warehouse_comment_type;
+    WarehouseComment = warehouse_comment;
+    CustomerCommentType = customer_comment_type;
+    CustomerComment = customer_comment;
+    CommentCreatedOn = comment_created_on;
+LocalLastChanged = local_last_changed;
+LastChanged = last_changed;
+CreatedOn = created_on;
+CreationUser = creation_user;
+ChangedUser = changed_user;
+
+  }
+  association _order;
+}

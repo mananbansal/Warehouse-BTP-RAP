@@ -1,0 +1,85 @@
+@Metadata.layer: #CORE
+@UI:{ 
+    headerInfo :{ 
+        typeName: 'Header',
+        typeNamePlural: 'Headers',
+        title:{ 
+            type: #STANDARD,
+            label: 'Order',
+            value: 'OrderId'
+        }
+    }
+}
+@Search.searchable: true
+annotate view ZG2C_ORDERS
+    with 
+{
+    @UI.facet: [{ 
+    id : 'Order',
+    purpose: #STANDARD,
+    type: #IDENTIFICATION_REFERENCE,
+    label: 'Order Info',
+    position: 10
+ },
+ { 
+    id : 'Orddtl',
+    type : #LINEITEM_REFERENCE,
+    label : 'Order Detail Info',
+    position : 20,
+    targetElement: '_dtl'
+ }]
+    @UI.identification: [{ position: 10 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 10 , importance: #HIGH},
+                     {type: #FOR_ACTION, dataAction: 'approveStatus', label: 'Approve'},
+                     {type: #FOR_ACTION, dataAction: 'rejectStatus', label: 'Reject'}]}
+    @UI:{selectionField: [{ position : 10}]}
+    @EndUserText.label : 'Order Id'
+    @Search.defaultSearchElement: true
+    OrderId;
+ 
+    
+    
+    @UI.identification: [{ position: 30 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 30 , importance: #HIGH }]}
+    @UI:{selectionField: [{ position : 30 }]}
+    @EndUserText.label : 'Company Code'
+    CompanyCode;
+    
+    @UI.identification: [{ position: 31 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 31 , importance: #HIGH }]}
+    @UI:{selectionField: [{ position : 31 }]}
+    @EndUserText.label : 'Org Code'
+    OrgCode;
+    
+    @UI.identification: [{ position: 32 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 32 , importance: #HIGH }]}
+    @EndUserText.label : 'Employee Id'
+    EmployeeId;
+    
+    @UI.identification: [{ position: 33 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 33 , importance: #HIGH }]}
+    @UI:{selectionField: [{ position : 33 }]}
+    @EndUserText.label : 'Warehouse Code'
+    WarehouseCode;
+    
+    @UI.identification: [{ position: 40 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 40 , importance: #HIGH }]}
+    @EndUserText.label : 'Order Date'
+    OrderDate;
+    
+    @UI.identification: [{ position: 50 , importance: #HIGH }]
+    @UI :{lineItem: [{ position: 50 , importance: #HIGH }]}
+    @EndUserText.label : 'Order Status'
+    OrderStatus;  
+    
+    @UI.identification: [{ position: 80 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 80 , importance: #HIGH }]}
+    @EndUserText.label : 'Payment Method'
+    PaymentMethod;
+    
+    @UI.identification: [{ position: 90 , importance: #HIGH  }]
+    @UI :{lineItem: [{ position: 90 , importance: #HIGH }]}
+    @EndUserText.label : 'Order Note'
+    OrderNote;
+    
+}

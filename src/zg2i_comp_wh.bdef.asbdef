@@ -1,0 +1,77 @@
+managed implementation in class zbp_g2i_comp_wh unique;
+strict ( 2 );
+
+define behavior for ZG2I_COMP_WH //alias <alias_name>
+persistent table zg2_comp_wh
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) CompanyName, WarehouseLocation, WarehouseCity, WarehouseState, Country, OrgLocation, OrgCity,
+    OrgState;
+  field ( readonly: update ) CompanyCode, OrgCode, WarehouseCode;
+  mapping for zg2_comp_wh
+  {
+    CompanyCode = company_code;
+    OrgCode = org_code;
+    WarehouseCode = warehouse_code;
+    CompanyName = company_name;
+    WarehouseLocation = warehouse_location;
+    WarehouseCity = warehouse_city;
+    WarehouseState = warehouse_state;
+    Country = country;
+    OrgLocation = org_location;
+    OrgCity = org_city;
+    OrgState = org_state;
+    OrgContactPerson = org_contact_person;
+    OrgContactEmail = org_contact_email;
+    OrgContactPhone = org_contact_phone;
+    OrgStatus = org_status;
+    LocalLastChanged = local_last_changed;
+    LastChanged = last_changed;
+    CreatedOn = created_on;
+    CreationUser = creation_user;
+    ChangedUser = changed_user;
+
+  }
+  validation validateState on save { field WarehouseState;create;update;}
+  determination CompDetails on modify {field OrgCode; }
+  determination warehouseDetails on modify {field WarehouseCode; }
+  association _item { create; }
+}
+
+define behavior for ZG2I_COMP_WH_ITEM //alias <alias_name>
+persistent table zg2_comp_wh_item
+lock dependent by _cmp
+authorization dependent by _cmp
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly : update ) CompanyCode, OrgCode, WarehouseCode, ItemCode ;
+  field ( readonly ) ItemName, ItemType, ItemCategory, ItemBrand, ItemModel, ItemDescription;
+  mapping for zg2_comp_wh_item
+  {
+    CompanyCode = company_code;
+    OrgCode = org_code;
+    WarehouseCode = warehouse_code;
+    ItemCode = item_code;
+    ItemName = item_name;
+    ItemType = item_type;
+    ItemCategory = item_category;
+    ItemBrand = item_brand;
+    ItemModel = item_model;
+    ItemDescription = item_description;
+    LocalLastChanged = local_last_changed;
+    LastChanged = last_changed;
+    CreatedOn = created_on;
+    CreationUser = creation_user;
+    ChangedUser = changed_user;
+
+  }
+  determination ItemDetails on modify {field ItemCode; }
+  association _cmp;
+}

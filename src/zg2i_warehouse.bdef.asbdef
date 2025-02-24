@@ -1,0 +1,77 @@
+managed implementation in class zbp_g2i_warehouse unique;
+strict ( 2 );
+
+define behavior for ZG2I_WAREHOUSE
+persistent table zg2_warehouse
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly : update ) WarehouseCode;
+  mapping for zg2_warehouse
+  {
+    WarehouseCode = warehouse_code;
+    WarehouseType = warehouse_type;
+    WarehouseName = warehouse_name;
+    WarehouseLocation = warehouse_location;
+    WarehouseCity = warehouse_city;
+    WarehouseState = warehouse_state;
+    WarehouseRegion = warehouse_region;
+    Country = country;
+    WarehouseStatus = warehouse_status;
+    LocalLastChanged = local_last_changed;
+    LastChanged = last_changed;
+    CreatedOn = created_on;
+    CreationUser = creation_user;
+    ChangedUser = changed_user;
+  }
+  association _wh_item { create; }
+}
+
+define behavior for ZG2I_WAREHOUSE_ITEM
+persistent table zg2_wh_items
+lock dependent by _warehouse
+authorization dependent by _warehouse
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) WarehouseCode, ItemName, ItemType, ItemCategory,
+                     ItemBrand, ItemModel, ItemDescription, Unit, Currency,
+                     UnitRate, TaxCode, AmcStatus;
+  field ( readonly: update ) ItemCode;
+  field (mandatory) Quantity, SaleCode, ItemStatus, AmcCode, Validity  ;
+  mapping for zg2_wh_items
+  {
+    WarehouseCode = warehouse_code;
+    ItemCode = item_code;
+    ItemName = item_name;
+    ItemType = item_type;
+    ItemCategory = item_category;
+    ItemBrand = item_brand;
+    ItemModel = item_model;
+    ItemDescription = item_description;
+    Unit = unit;
+    Quantity = quantity;
+    ContFlag = cont_flag;
+    Currency = currency;
+    UnitRate = unit_rate;
+    SaleCode = sale_code;
+    TaxCode = tax_code;
+    AmcStatus = amc_status;
+    AmcCode = amc_code;
+    Validity = validity;
+    ItemStatus = item_status;
+    LocalLastChanged = local_last_changed;
+    LastChanged = last_changed;
+    CreatedOn = created_on;
+    CreationUser = creation_user;
+    ChangedUser = changed_user;
+
+  }
+  association _warehouse;
+  determination ItemDetails on modify {field ItemCode; }
+}

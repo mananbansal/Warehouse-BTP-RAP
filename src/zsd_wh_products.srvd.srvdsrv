@@ -1,0 +1,4 @@
+@EndUserText.label: 'products SD'
+define service ZSD_WH_PRODUCTS {
+  expose ZG2C_WH_PRODUCTS;
+}
